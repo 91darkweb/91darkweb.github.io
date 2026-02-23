@@ -1,1 +1,250 @@
-<h1>https:\\www.bilibili.com<h1>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>江州轨道交通服务器 - 欢迎加入</title>
+    <style>
+        /* 全局样式重置 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Minecraft', 'Microsoft YaHei', sans-serif;
+        }
+
+        /* 自定义字体（模拟MC风格） */
+        @font-face {
+            font-family: 'Minecraft';
+            src: url('https://fonts.cdnfonts.com/css/minecraft-4') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        body {
+            background: #1a1a1a url('https://picsum.photos/id/110/1920/1080') no-repeat center center;
+            background-size: cover;
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            position: relative;
+        }
+
+        /* 背景遮罩 */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: -1;
+        }
+
+        /* 主容器 */
+        .container {
+            background: rgba(20, 20, 40, 0.9);
+            border: 2px solid #5c8a8a;
+            border-radius: 10px;
+            padding: 40px;
+            max-width: 800px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.3);
+        }
+
+        /* 标题样式 */
+        .server-title {
+            color: #66ff66;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px #00ff00;
+        }
+
+        /* 服务器信息卡片 */
+        .server-info {
+            background: rgba(0, 0, 0, 0.6);
+            border: 1px solid #33ff33;
+            border-radius: 8px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+
+        /* 服务器地址样式 */
+        .server-address {
+            font-size: 1.5rem;
+            color: #ffff66;
+            margin: 15px 0;
+            padding: 10px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        /* 按钮样式 */
+        .btn {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 1.1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px 5px;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background: #45a049;
+            transform: scale(1.05);
+            box-shadow: 0 0 15px #00ff00;
+        }
+
+        .btn-copy {
+            background: #2196F3;
+        }
+
+        .btn-copy:hover {
+            background: #0b7dda;
+        }
+
+        /* 加入指引 */
+        .join-guide {
+            text-align: left;
+            margin: 25px 0;
+            line-height: 1.8;
+            color: #e0e0e0;
+        }
+
+        .join-guide h3 {
+            color: #66ffff;
+            margin-bottom: 10px;
+        }
+
+        .join-guide ol {
+            padding-left: 20px;
+        }
+
+        /* 响应式适配 */
+        @media (max-width: 768px) {
+            .server-title {
+                font-size: 2rem;
+            }
+            
+            .server-address {
+                font-size: 1.2rem;
+                flex-direction: column;
+            }
+            
+            .container {
+                padding: 20px;
+            }
+        }
+
+        /* 提示消息 */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 5px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 1000;
+        }
+
+        .toast.show {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 服务器标题 -->
+        <h1 class="server-title">江州轨道交通服务器</h1>
+        
+        <!-- 服务器信息 -->
+        <div class="server-info">
+            <h2></h2>
+            <p>欢迎来到江州城建服务器！我们是一个专注于建筑和城市建设的Minecraft服务器。
+
+在我们的服务器中，你可以：
+
+参与大型城市建设计划
+展示你的建筑才华
+与其他建筑师合作完成项目
+体验精心设计的生存与创造模式
+我们的服务器致力于为建筑爱好者提供一个友好、协作的环境，共同打造一个美丽的江州城。</p>
+            
+            <!-- 服务器地址 -->
+            <div class="server-address">
+                <span id="mc-address">mc.example.com:25565</span>
+                <button class="btn btn-copy" onclick="copyAddress()">复制地址</button>
+            </div>
+            
+            <!-- 加入按钮 -->
+            <button class="btn" onclick="openMCGuide()">启动MC并加入</button>
+        </div>
+        
+        <!-- 加入指引 -->
+        <div class="join-guide">
+            <h3>如何加入服务器：</h3>
+            <ol>
+                <li>启动我的世界游戏，确保版本与服务器一致</li>
+                <li>点击"多人游戏" → "添加服务器"</li>
+                <li>粘贴上方的服务器地址，设置服务器名称</li>
+                <li>点击完成，然后选择服务器并加入</li>
+            </ol>
+        </div>
+        
+        <!-- 其他链接 -->
+        <div>
+            <a href="#" class="btn"> QQ群号：1071827696</a>
+        </div>
+    </div>
+
+    <!-- 提示框 -->
+    <div class="toast" id="toast">地址已复制到剪贴板！</div>
+
+    <script>
+        // 复制服务器地址到剪贴板
+        function copyAddress() {
+            const address = document.getElementById('mc-address').textContent;
+            navigator.clipboard.writeText(address).then(() => {
+                showToast();
+            }).catch(err => {
+                alert('复制失败，请手动复制: ' + address);
+                console.error('复制失败:', err);
+            });
+        }
+
+        // 显示提示消息
+        function showToast() {
+            const toast = document.getElementById('toast');
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 2000);
+        }
+
+        // 打开MC加入指引（可根据需要修改为实际的MC启动链接）
+        function openMCGuide() {
+            // 这里可以根据实际需求修改，比如打开MC启动器或者显示更详细的指引
+            alert('此功能暂未完善');
+            // 如果有MC启动协议，可以使用下面的代码（需要客户端支持）
+            // window.location.href = 'minecraft:?addExternalServer=MC服务器|mc.example.com:25565';
+        }
+    </script>
+</body>
+</html>
